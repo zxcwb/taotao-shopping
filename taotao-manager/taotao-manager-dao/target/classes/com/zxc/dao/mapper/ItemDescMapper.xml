@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxc.dao.ItemDescMapper">
+  <resultMap id="BaseResultMap" type="com.zxc.entity.ItemDesc">
+    <id column="item_desc_id" jdbcType="INTEGER" property="itemDescId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_edit_time" jdbcType="TIMESTAMP" property="lastEditTime" />
+    <result column="item_desc" jdbcType="VARCHAR" property="itemDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_desc_id, create_time, last_edit_time, item_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_item_desc
+    where item_desc_id = #{itemDescId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_item_desc
+    where item_desc_id = #{itemDescId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zxc.entity.ItemDesc">
+    insert into tb_item_desc (item_desc_id, create_time, last_edit_time, 
+      item_desc)
+    values (#{itemDescId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastEditTime,jdbcType=TIMESTAMP}, 
+      #{itemDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxc.entity.ItemDesc">
+    insert into tb_item_desc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemDescId != null">
+        item_desc_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastEditTime != null">
+        last_edit_time,
+      </if>
+      <if test="itemDesc != null">
+        item_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemDescId != null">
+        #{itemDescId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastEditTime != null">
+        #{lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemDesc != null">
+        #{itemDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxc.entity.ItemDesc">
+    update tb_item_desc
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastEditTime != null">
+        last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemDesc != null">
+        item_desc = #{itemDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where item_desc_id = #{itemDescId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxc.entity.ItemDesc">
+    update tb_item_desc
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
+      item_desc = #{itemDesc,jdbcType=VARCHAR}
+    where item_desc_id = #{itemDescId,jdbcType=INTEGER}
+  </update>
+</mapper>
