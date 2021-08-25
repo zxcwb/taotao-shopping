@@ -38,6 +38,9 @@
     <activemq.version>5.13.0</activemq.version>
     <freemarker.version>2.3.23</freemarker.version>
     <quartz.version>2.3.2</quartz.version>
+    <lombok.version>1.18.12</lombok.version>
+    <jsch.version>0.1.54</jsch.version>
+    <fastjson.version>1.2.25</fastjson.version>
   </properties>
 
   <dependencyManagement>
@@ -153,7 +156,11 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-webmvc</artifactId>
         <version>${spring.version}</version>
-      </dependency>
+      </dependency><dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
@@ -235,6 +242,25 @@
         <groupId>org.freemarker</groupId>
         <artifactId>freemarker</artifactId>
         <version>${freemarker.version}</version>
+      </dependency>
+      <!--lombok-->
+      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+      <!--sftp-->
+      <dependency>
+        <groupId>com.jcraft</groupId>
+        <artifactId>jsch</artifactId>
+        <version>${jsch.version}</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
       </dependency>
 
     </dependencies>
