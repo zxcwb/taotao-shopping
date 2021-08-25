@@ -3,12 +3,16 @@ package com.zxc.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zxc.common.entity.EasyUIDataGridResult;
+import com.zxc.common.entity.TaotaoResult;
+import com.zxc.common.util.IDUtil;
 import com.zxc.dao.ItemMapper;
 import com.zxc.entity.Item;
 import com.zxc.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -43,5 +47,22 @@ public class ItemServiceImpl implements ItemService {
             result.setRows(itemPageInfo.getList());
         }
         return result;
+    }
+
+    @Override
+    @Transactional
+    public TaotaoResult addItem(Item item) {
+        //item补全
+        long itemId = IDUtil.genItemId();
+        item.setItemId(itemId);
+        item.setStatus(1); //1、正常2、下架、3、删除
+        item.setCreateTime(new Date());
+        item.setLastEditTime(new Date());
+        int result = itemMapper.insertSelective(item);
+        if (result > 0){
+            return TaotaoResult.ok();
+        }else {
+            return TaotaoResult.build(0,"商品添加失败！");
+        }
     }
 }

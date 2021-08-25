@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zxc.dao.ItemMapper">
   <resultMap id="BaseResultMap" type="com.zxc.entity.Item">
-    <id column="item_id" jdbcType="INTEGER" property="itemId" />
+    <id column="item_id" jdbcType="BIGINT" property="itemId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="sell_point" jdbcType="VARCHAR" property="sellPoint" />
     <result column="price" jdbcType="DECIMAL" property="price" />
@@ -77,7 +77,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="itemId != null">
-        #{itemId,jdbcType=INTEGER},
+        #{itemId,jdbcType=BIGINT},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -145,7 +145,7 @@
         last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where item_id = #{itemId,jdbcType=INTEGER}
+    where item_id = #{itemId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zxc.entity.Item">
     update tb_item
@@ -159,7 +159,7 @@
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP}
-    where item_id = #{itemId,jdbcType=INTEGER}
+    where item_id = #{itemId,jdbcType=BIGINT}
   </update>
   <select id="selectAllItem" resultMap="BaseResultMap">
     select

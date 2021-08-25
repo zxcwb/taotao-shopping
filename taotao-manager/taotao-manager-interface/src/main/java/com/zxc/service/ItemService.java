@@ -1,6 +1,8 @@
 package com.zxc.service;
 
 import com.zxc.common.entity.EasyUIDataGridResult;
+import com.zxc.common.entity.TaotaoResult;
+import com.zxc.entity.Item;
 
 /*
  * @Author: zxc of Russell
@@ -10,4 +12,5 @@ import com.zxc.common.entity.EasyUIDataGridResult;
  */
 public interface ItemService {
     EasyUIDataGridResult getItemList(Integer page,Integer rows);
+    TaotaoResult addItem(Item item);
 }

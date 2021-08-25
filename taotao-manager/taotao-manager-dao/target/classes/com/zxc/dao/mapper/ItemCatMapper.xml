@@ -125,4 +125,16 @@
       last_edit_time = #{lastEditTime,jdbcType=TIMESTAMP}
     where item_cat_id = #{itemCatId,jdbcType=INTEGER}
   </update>
+  <select id="selectByParentId" resultMap="BaseResultMap">
+    select
+    item_cat_id,parent_id,name,
+    status,sort_order,is_parent,
+    create_time,last_edit_time
+    from tb_item_cat
+    <where>
+    <if test="parentId != null">
+      parent_id = #{parentId}
+    </if>
+    </where>
+</select>
 </mapper>
