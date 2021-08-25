@@ -1,6 +1,8 @@
 package com.zxc.controller;
 
 import com.zxc.common.entity.EasyUIDataGridResult;
+import com.zxc.common.entity.TaotaoResult;
+import com.zxc.entity.Item;
 import com.zxc.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,5 +28,12 @@ public class ItemController {
         //1、引入注入服务
         //2、调用服务方法
         return itemService.getItemList(page,rows);
+    }
+
+    @RequestMapping(value = "/item/save",method = RequestMethod.POST)
+    @ResponseBody
+    public TaotaoResult createItem(Item item){
+       TaotaoResult result =  itemService.addItem(item);
+       return result;
     }
 }

@@ -12,15 +12,26 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!--定义文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--10MB-->
+        <property name="maxUploadSize" value="104857600" />
+        <!--2K-->
+        <property name="maxInMemorySize" value="4096" />
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
     <!-- 配置静态资源映射  -->
     <!-- 指定/WEB-INF/js   /WEB-INF/css/  下的所有的静态资源包括子目录下的静态资源  都不被拦截-->
     <!--  mapping=/js/**  :表示访问静态资源的路径的形式    可以访问 /js/下的静态资源或者所有的子目录下的静态资源-->
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
-
     <!-- 引用dubbo服务 -->
     <dubbo:application name="taotao-manager-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.157.130:2181"/>
     <dubbo:reference interface="com.zxc.service.TestService" id="testService" />
     <dubbo:reference interface="com.zxc.service.ItemService" id="itemService"/>
+    <dubbo:reference interface="com.zxc.service.ItemCatService" id="itemCatService"/>
+    <dubbo:reference  interface="com.zxc.service.PictureService" id="pictureService" timeout="1000000"/>
 </beans>

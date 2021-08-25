@@ -83,7 +83,9 @@
 			return ;
 		}
 		//取商品价格，单位为“分”
-		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
+		//$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
+		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()));
+
 		//同步文本框中的商品描述
 		itemAddEditor.sync();
 		//取商品的规格
